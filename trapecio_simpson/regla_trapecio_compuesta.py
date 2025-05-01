@@ -5,7 +5,7 @@ import sympy as sp # Importar sympy para cálculo simbólico
 
 def funcion(x):
     """Define la función a integrar (versión numérica)."""
-    return 6 + 3 * np.cos(x)  # Puedes cambiarla por cualquier otra función
+    return np.sqrt(2)*np.exp(x**2)  # Puedes cambiarla por cualquier otra función
 
 # --- Funciones Simbólicas (usando SymPy) ---
 x_sym = sp.symbols('x') # Definir el símbolo x para sympy
@@ -88,8 +88,8 @@ def calcular_error_trapecio(f_sym, a, b, n):
 
 # Parámetros de integración
 a = 0          # Límite inferior
-b = np.pi / 2  # Límite superior
-n = 2         # Número de subintervalos (ajusta según la precisión deseada)
+b = 1  # Límite superior
+n = 10         # Número de subintervalos (ajusta según la precisión deseada)
 
 # Obtener la función simbólica
 f_simbolica = funcion_simbolica()

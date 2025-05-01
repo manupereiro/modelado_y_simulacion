@@ -1,7 +1,7 @@
 import random
 
 # Número de puntos aleatorios
-num_puntos = 10000000  
+num_puntos = 10000  
 puntos_dentro = 0  # Contador de puntos dentro del círculo
 
 # Generamos los puntos aleatorios

@@ -8,7 +8,7 @@ radio = 1
 centro_x, centro_y = 0, 0  # El círculo está centrado en el origen
  
 # Número de puntos aleatorios
-n = 1000000
+n = 10000
  
 # Generar coordenadas aleatorias en el intervalo [-1,1] para x y y
 x_random = np.random.uniform(-radio, radio, n)

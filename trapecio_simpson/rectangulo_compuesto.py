@@ -2,14 +2,14 @@ import numpy as np
 
 # Definimos la función a integrar
 def funcion(x):
-    return np.sin(x)  # Puedes cambiarla por otra función
+    return (np.e)**x**2  # Puedes cambiarla por otra función
 
 # Límites de integración
 a = 0  # Límite inferior
-b = np.pi  # Límite superior
+b = 2  # Límite superior
 
 # Número de subintervalos
-n = 10  # Ajusta según la precisión deseada
+n = 10 # Ajusta según la precisión deseada
 
 # Paso
 h = (b - a) / n

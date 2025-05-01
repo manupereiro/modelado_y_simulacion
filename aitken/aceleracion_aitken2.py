@@ -1,6 +1,7 @@
 import math
 import numpy as np
 from tabulate import tabulate
+import pandas as pd  # Importamos pandas
 
 def g(x):
     """
@@ -8,7 +9,7 @@ def g(x):
     Cambia esta definición a la que uses en tu ejercicio.
     Por ejemplo: g(x) = (2/pi) + (4/(x*pi))
     """
-    return np.cos(x)
+    return np.sqrt((np.e)**x/3)
 
 def aitken_acceleration(g, x0, tol=1e-3, max_iter=50, precision=10):
     """
@@ -45,7 +46,7 @@ def aitken_acceleration(g, x0, tol=1e-3, max_iter=50, precision=10):
             x_star = x_old - ( (x1 - x_old)**2 ) / denom
         
         # Definimos el error como la diferencia entre x_old^* y x_old
-        error = abs(x_star - x2) if not math.isnan(x_star) else float('inf')
+        error = (abs(x_star - x2)/x_star)*100 if not math.isnan(x_star) else float('inf')
         
         # Guardamos en la tabla
         fila = [
@@ -69,9 +70,9 @@ def aitken_acceleration(g, x0, tol=1e-3, max_iter=50, precision=10):
 if __name__ == "__main__":
     # Parámetros de usuario
     x0_inicial = 0.5       # ejemplo de valor inicial
-    tolerancia = 1e-5      # ejemplo de tolerancia
+    tolerancia = 1e-4      # ejemplo de tolerancia
     num_iter_max = 20      # máximo de iteraciones
-    digitos = 10            # precisión en la tabla
+    digitos = 6            # precisión en la tabla
     
     # Ejecutar la aceleración de Aitken
     tabla_resultados, x_ultima = aitken_acceleration(
@@ -82,14 +83,15 @@ if __name__ == "__main__":
         precision=digitos
     )
     
-    # Imprimir la tabla
+    # Convertir a DataFrame de pandas y mostrar
     headers = ["i", "x0", "x1", "x2", "x0*", "error"]
-    print(tabulate(tabla_resultados, headers=headers, tablefmt="grid"))
+    df_resultados = pd.DataFrame(tabla_resultados, columns=headers)
+    df_resultados.set_index("i", inplace=True)
+    print("\n--- Tabla de Iteraciones (Aitken) ---")
+    print(df_resultados)  # Imprime directamente el DataFrame
     
     print(f"\nAproximación final tras Aitken: {x_ultima:.{digitos}f}")
     print(f"Valor real: {2/np.pi:.{digitos}f}")
     print(f"Error absoluto: {abs(x_ultima - 2/np.pi):.{digitos}f}")
     print(f"Error relativo: {abs((x_ultima - 2/np.pi) / (2/np.pi)):.{digitos}f}")
     print(f"Iteraciones realizadas: {len(tabla_resultados)}")
-    
-    

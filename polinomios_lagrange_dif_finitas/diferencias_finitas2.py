@@ -56,10 +56,10 @@ def calcular_derivadas_finitas_comparativas(f_simbolica, x_vals, h):
 if __name__ == "__main__":
     # Ejemplo de uso: f(x) = sin(x)
     x = sp.symbols('x')
-    f_expr = sp.sin(x)
+    f_expr = sp.log(x + 1)
     #x_vals = [0, 1.5, 4, 7.5, 12, 17.5, 24, 31.5, 40]
-    x_vals = np.arange(0, 0.6, 0.1)
-    h = 0.1
+    x_vals = np.arange(1, 1.5, 2)
+    h = 0.5
 
     df = calcular_derivadas_finitas_comparativas(f_expr, x_vals, h)
     print(df.to_string(index=False))
